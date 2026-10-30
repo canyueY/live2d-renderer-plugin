@@ -1,12 +1,14 @@
-# dsh-murasame-pet
+# 肥鱼 Live2D 模型渲染插件
 
-> 把现有 **MurasamePet Lite** 绑定进 DSH：一个 DSH 插件，负责启动桌宠、切换人物/文字显示模式、同步文字框比例，不重写 Live2D 渲染器。
+> 肥鱼 Live2D 模型渲染插件：把现有 **MurasamePet Lite** 绑定进 DSH，负责启动、人物/文字显示模式与文字框比例；复用原 Live2D 渲染器，不重写模型渲染。
+
+> 技术包名与仓库名仍为 `dsh-murasame-pet`，避免破坏已安装用户；项目显示名统一为 **肥鱼 Live2D 模型渲染插件**。
 
 [用户指南](docs/USER_GUIDE.md) · [DSH 指南](docs/DSH_GUIDE.md) · [发布页](https://github.com/canyueY/dsh-murasame-pet/releases)
 
 ## 这是什么
 
-这个项目不是新的桌宠，也不是新的 Live2D 渲染器。它复用原工程已有的：
+**肥鱼 Live2D 模型渲染插件**不是新的桌宠，也不是新的 Live2D 渲染器。它复用原工程已有的：
 
 - PyQt5 桌宠窗口与文字气泡 / 输入框
 - `pyqt-live2d-bridge` 的 Cubism Native 渲染
