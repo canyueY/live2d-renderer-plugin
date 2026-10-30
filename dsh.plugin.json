@@ -1,0 +1,9 @@
+{
+  "id": "dsh-murasame-pet",
+  "version": "0.1.0",
+  "main": "./lib/index.js",
+  "description": "DSH 桌面端绑定 MurasamePet Lite。",
+  "engines": { "dsh": ">=0.2.0" },
+  "contributes": { "tools": ["pet_start", "pet_stop", "pet_status", "pet_set_visibility", "pet_set_scale"], "skills": [] },
+  "client": { "main": "./lib/client.js", "platform": "web" }
+}
