@@ -2,9 +2,9 @@
 
 > 肥鱼 Live2D 模型渲染插件：把现有 **MurasamePet Lite** 绑定进 DSH，负责启动、人物/文字显示模式与文字框比例；复用原 Live2D 渲染器，不重写模型渲染。
 
-> 技术包名与仓库名仍为 `dsh-murasame-pet`，避免破坏已安装用户；项目显示名统一为 **肥鱼 Live2D 模型渲染插件**。
+> 技术包名仍为 `dsh-murasame-pet`（避免破坏已安装用户）；仓库名已改为 `live2d-renderer-plugin`；项目显示名统一为 **肥鱼 Live2D 模型渲染插件**。
 
-[用户指南](docs/USER_GUIDE.md) · [DSH 指南](docs/DSH_GUIDE.md) · [发布页](https://github.com/canyueY/dsh-murasame-pet/releases)
+[用户指南](docs/USER_GUIDE.md) · [DSH 指南](docs/DSH_GUIDE.md) · [发布页](https://github.com/canyueY/live2d-renderer-plugin/releases)
 
 ## 这是什么
 
@@ -32,13 +32,13 @@
 然后安装插件：
 
 ```sh
-dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/dsh-murasame-pet#v0.1.0'
+dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/live2d-renderer-plugin#v0.1.0'
 ```
 
 本地开发：
 
 ```sh
-dsh plugin --profile desktop add link:D:\path\to\dsh-murasame-pet
+dsh plugin --profile desktop add link:D:\path\to\live2d-renderer-plugin
 ```
 
 重启 DSH 或刷新页面，打开「插件 → dsh-murasame-pet」即可看到控制面板。

@@ -26,13 +26,13 @@ MurasamePetLite.exe
 ### 从 GitHub
 
 ```sh
-dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/dsh-murasame-pet#v0.1.0'
+dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/live2d-renderer-plugin#v0.1.0'
 ```
 
 ### 本地开发
 
 ```sh
-dsh plugin --profile desktop add link:D:\path\to\dsh-murasame-pet
+dsh plugin --profile desktop add link:D:\path\to\live2d-renderer-plugin
 ```
 
 重启 DSH / 刷新页面。
@@ -155,7 +155,7 @@ ctx.slots.inject('plugins.detail.section', () => ctx.slots.register({...}, Panel
 git tag v0.1.0
 git push origin v0.1.0
 gh release create v0.1.0 \
-  --title "dsh-murasame-pet v0.1.0" \
+  --title "肥鱼 Live2D 模型渲染插件 v0.1.0" \
   --notes "DSH 绑定、显示模式、文字比例、副屏 DPI 修复"
 ```
 

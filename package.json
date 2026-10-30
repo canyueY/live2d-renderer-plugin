@@ -27,5 +27,13 @@
   },
   "engines": {
     "dsh": ">=0.2.0"
+  },
+  "homepage": "https://github.com/canyueY/live2d-renderer-plugin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canyueY/live2d-renderer-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/canyueY/live2d-renderer-plugin/issues"
   }
 }
