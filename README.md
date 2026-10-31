@@ -82,3 +82,8 @@ docs/DSH_GUIDE.md  DSH / 扩展指南
 AGPL-3.0-or-later。MurasamePet Lite 运行目录中的模型/贴图版权归原作者，详见发布包内 `THIRD_PARTY_NOTICES.md`。
 
 > 状态：v0.1.0，按 DSH `0.2.1-rc.3` 验证。副屏 DPI 修复使用 PerMonitorV2 + Cubism 物理像素视口。
+
+
+---
+
+> **为什么还要开发 Mnemosyne？** [阅读全文 →](WHY_MNEMOSYNE.md)
