@@ -29,7 +29,7 @@ model\dafeiyu\大肥鱼.model3.json
 ## 3. 安装 DSH 插件
 
 ```sh
-dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/dsh-murasame-pet#v0.1.0'
+dsh plugin --profile desktop add 'dsh-murasame-pet@github:canyueY/live2d-renderer-plugin#v0.1.0'
 ```
 
 装完重启 DSH，或刷新页面。插件默认会自动启动桌宠；不想自动启动，设置：

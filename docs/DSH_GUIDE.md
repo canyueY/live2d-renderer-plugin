@@ -9,7 +9,7 @@ DSH Web/Desktop
  ├─ dsh-murasame-pet (host, lib/index.js)
  │   ├─ /dsh-murasame-pet/state      读取运行状态
  │   ├─ /dsh-murasame-pet/control    启停 / 显示模式 / 比例
- │   └─ tools: pet_start / pet_stop / pet_status / pet_set_*
+ │   └─ tools: pet_*（Lite）/ body_*（完整身体）
  └─ dsh-murasame-pet (client, lib/client.js)
      └─ plugins.detail.section 控制面板
 
@@ -58,6 +58,15 @@ dsh plugin --profile desktop add link:D:\path\to\live2d-renderer-plugin
 | `pet_status` | 无 | running / visibility / scale / appRoot |
 | `pet_set_visibility` | `mode: both\|text\|character\|none` | `{ok,text}` |
 | `pet_set_scale` | `scale: 0.7–1.6` | `{ok,text}` |
+| `body_start` | 无 | 启动完整 `pet.py`（body 28566） |
+| `body_stop` | 无 | 停止本插件启动的完整身体 |
+| `body_status` | 无 | 角色 / 模型 / 显示 / TTS / B 站视频 |
+| `body_say` | `text`、`emotion?`、`speak?` | `{ok,text}` |
+| `body_emote` | `emotion` | `{ok,text}` |
+| `body_video` | 无 | 当前 B 站视频观察摘要 |
+| `body_music` | 无 | 网易云 / CDP / 当前歌曲状态 |
+| `body_weather` | `city?` | 高德实况/预报 |
+| `body_memory` | `query?`、`limit?` | 真实 Memory Bank 健康/检索 |
 
 示例：
 
@@ -107,9 +116,23 @@ POST /dsh-murasame-pet/control
 
 ## 7. 自动启动与 DSH 绑定
 
-- 插件默认随 DSH 加载自动启动桌宠；`MURASAMEPET_AUTOSTART=0` 关闭。
+- 插件默认**不**自动启动桌宠（`MURASAMEPET_AUTOSTART=1` 可开启）。
+- `body_start` 启动完整工程 `pet.py`；body 控制面固定 `127.0.0.1:28566`。
 - `启动桌宠并连接DSH.bat` 在 `17357` 未监听时后台启动 `dsh web --no-open`，再启动桌宠。
 - 已在运行的 DSH 不会被重复拉起。
+
+### 身体组件契约
+
+```text
+DSH（大脑）
+  ├─ body_video  -> GET  /body/status（video_observation）
+  ├─ body_say    -> POST /body/say   {text, emotion, speak}
+  ├─ body_emote  -> POST /body/emote {emotion}
+  └─ body_status -> GET  /body/status
+```
+
+`body_say` 返回 202 即表示已交给 Qt 主线程；TTS 在后台线程合成，完成后自动播放。
+`body_say` 不调用项目 LLM：DSH 是唯一大脑，身体只负责表演。
 
 ## 8. 扩展方式
 

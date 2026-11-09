@@ -1,8 +1,8 @@
 {
   "name": "dsh-murasame-pet",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "type": "module",
-  "description": "肥鱼 Live2D 模型渲染插件：把 MurasamePet Lite 绑定进 DSH，控制启动、显示模式与文字比例。",
+  "description": "肥鱼身体组件：DSH 把整个 Murasame 工程当作身体，控制启动、说话、表情、显示与 B 站观察。",
   "license": "AGPL-3.0-or-later",
   "main": "./lib/index.js",
   "exports": {
@@ -16,7 +16,12 @@
     "dsh.plugin.json",
     "README.md"
   ],
+  "scripts": {
+    "test": "node --test test/*.mjs",
+    "check": "node --check lib/index.js && node --check lib/client.js"
+  },
   "dsh": {
+    "manifestVersion": 1,
     "bundle": {
       "patch": "./cordis.patch.yml"
     },
@@ -26,7 +31,15 @@
     }
   },
   "engines": {
-    "dsh": ">=0.2.0"
+    "dsh": ">=0.2.1-0 <0.3.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": ">=0.2.1-0 <0.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
   },
   "homepage": "https://github.com/canyueY/live2d-renderer-plugin#readme",
   "repository": {

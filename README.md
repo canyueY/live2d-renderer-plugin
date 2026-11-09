@@ -61,11 +61,45 @@ dsh plugin --profile desktop add link:D:\path\to\live2d-renderer-plugin
 
 | 工具 | 作用 |
 | --- | --- |
-| `pet_start` | 启动桌宠 |
-| `pet_stop` | 停止桌宠 |
-| `pet_status` | 运行状态 / 显示模式 / 比例 / 应用路径 |
+| `pet_start` | 启动 Lite 桌宠 |
+| `pet_stop` | 停止 Lite 桌宠 |
+| `pet_status` | Lite 运行状态 / 显示模式 / 比例 / 应用路径 |
 | `pet_set_visibility` | `both` / `text` / `character` / `none` |
 | `pet_set_scale` | 文字框比例 `0.7–1.6` |
+| `body_start` | 启动**完整工程** `pet.py` 作为身体（body 控制面 28566） |
+| `body_stop` | 停止本插件启动的完整身体 |
+| `body_status` | 角色 / Live2D 模型 / 显示 / TTS / B 站视频 |
+| `body_say` | 让身体说话：气泡 + 表情 + 可选 TTS |
+| `body_emote` | 只切 Live2D 表情 |
+| `body_video` | 读取当前 B 站视频观察状态 |
+| `body_music` | 读取网易云 / CDP / 当前歌曲状态 |
+| `body_weather` | 查询高德天气实况/预报 |
+| `body_memory` | 只读查询桌宠真实 Mnemosyne Memory Bank |
+| `body_screen` | 按桌宠配置截一张当前屏幕，存 JPEG 到 `data/screenshots/`，返回路径给对话侧 `read_image` 看（不调 VL、不上传） |
+
+### 桌宠输入 → DSH
+
+`lib/index.js` 的 `/dsh-murasame-pet/chat` 把桌宠输入送进一个 DSH Agent session：
+
+```text
+pet.py 输入框 -> /dsh-murasame-pet/chat -> session.prompt
+              -> memory_* / body_memory / body_weather / anime_*
+              -> assistant 文本 -> pet.py 气泡
+```
+
+桌宠不再调用自己的云端 LLM；DSH 是唯一大脑。
+
+### 身体组件契约
+
+```text
+DSH（大脑） --tool--> dsh-murasame-pet（宿主插件）
+                         ├─ body_say  ──HTTP 28566──> pet.py（身体）
+                         ├─ body_emote ─HTTP 28566──> Live2D
+                         └─ body_video ─HTTP 28566──> video_observation
+```
+
+`body_say` 是 fire-and-forget：DSH 决定台词，身体只负责显示、表情与 TTS。
+完整工程的 `Murasame/body_surface.py` 只监听 `127.0.0.1:28566`。
 
 ## 目录
 
@@ -81,9 +115,4 @@ docs/DSH_GUIDE.md  DSH / 扩展指南
 
 AGPL-3.0-or-later。MurasamePet Lite 运行目录中的模型/贴图版权归原作者，详见发布包内 `THIRD_PARTY_NOTICES.md`。
 
-> 状态：v0.1.0，按 DSH `0.2.1-rc.3` 验证。副屏 DPI 修复使用 PerMonitorV2 + Cubism 物理像素视口。
-
-
----
-
-> **为什么还要开发 Mnemosyne？** [阅读全文 →](WHY_MNEMOSYNE.md)
+> 状态：v0.2.1，宿主接口兼容 DSH `0.2.1` 至 `0.2.2-rc.1`（`engines.dsh: >=0.2.1-0 <0.3.0`，含 rc）。副屏 DPI 修复使用 PerMonitorV2 + Cubism 物理像素视口。DSH 0.2.2 起 Host Service 访问必须显式 `inject`，本插件已声明 `tools`、`webServer`、`sessionController`。
